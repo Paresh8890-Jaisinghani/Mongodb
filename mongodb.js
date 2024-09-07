@@ -1,24 +1,36 @@
-
-//mpngodb native library
-const mongodb = require("mongodb");
-const MongoClient = mongodb.MongoClient;
-
-//string for connection
-const connectionUrl = 'mongodb://localhost:27017';
-const database = 'task-manager';
+const mongodb = require('mongodb')
+const {MongoClient,ObjectID} = require('mongodb')
 
 
-//connect the database from connection string
-MongoClient.connect(connectionUrl, (error, client) => {
-    if (error) {
-        return console.log('Unable to connect:', error);
+const Id = new ObjectID()
+console.log(Id)
+console.log(Id.getTimestamp())
+
+const connectionurl = 'mongodb://localhost:27017';
+const database = "task-manager"
+
+MongoClient.connect(connectionurl,(error,client)=>{
+    if(error){
+        return console.log("unabale to connect")
     }
 
-    //using db methods provided by mongodb
     const db = client.db(database);
-    db.collection('users').insertOne({
-        name : "paresh",
-        age : 21
+    db.collection('tasks').insertMany([
+        {
+            description : 'first task',
+            completed : true
+        },
+        {
+            description : 'second task',
+            completed : false
+        }
+    ],(error,res)=>{
+        if(error){
+            return console.log("unable to insert");
+        }
+
+        // console.log(res.ops);
+    })
 })
 
-})
+
