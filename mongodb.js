@@ -1,36 +1,47 @@
 const mongodb = require('mongodb')
-const {MongoClient,ObjectID} = require('mongodb')
+const { MongoClient } = require ('mongodb')
 
 
-const Id = new ObjectID()
-console.log(Id)
-console.log(Id.getTimestamp())
+const connectionurl = "mongodb://localhost:27017"
+const database = 'details'
 
-const connectionurl = 'mongodb://localhost:27017';
-const database = "task-manager"
 
 MongoClient.connect(connectionurl,(error,client)=>{
     if(error){
-        return console.log("unabale to connect")
+        return console.log('unable to make database')
     }
 
-    const db = client.db(database);
-    db.collection('tasks').insertMany([
-        {
-            description : 'first task',
-            completed : true
-        },
-        {
-            description : 'second task',
-            completed : false
-        }
-    ],(error,res)=>{
-        if(error){
-            return console.log("unable to insert");
-        }
+    const db = client.db(database)
 
-        // console.log(res.ops);
+    // db.collection('contact').insertMany([
+    //     {
+    //         name : 'Paresh',
+    //         mobno : '6375211531'
+    //     },{
+    //         name : 'Sidhu',
+    //         Mobno : '9376491531'
+    //     }
+    // ]),(error,res)=>{
+    //     if(error){
+    //         return console.log('unable to insert')
+    //     }
+    //     console.log(res.ops)
+    // }
+
+
+    // db.collection('contact').findOne({name :'Paresh'},(error,cont)=>{
+    //     if(error){
+    //         return console.log('not found')
+    //     }
+
+    //     console.log(cont)
+    // })
+
+
+    db.collection('contact').find({}).toArray((error,con)=>{
+        console.log(con);
     })
+
+
+    // db.collection('contact')
 })
-
-
