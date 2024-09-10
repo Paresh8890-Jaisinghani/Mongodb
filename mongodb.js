@@ -38,10 +38,46 @@ MongoClient.connect(connectionurl,(error,client)=>{
     // })
 
 
-    db.collection('contact').find({}).toArray((error,con)=>{
-        console.log(con);
+    // db.collection('contact').find({}).toArray((error,con)=>{
+    //     console.log(con);
+    // })
+
+    // db.collection('contact')
+
+
+    // const updatepromises = db.collection('contact').updateOne({
+    //     name : 'Paresh'
+    // },{
+    //     $set : {
+    //         name : 'Jaisinghani'
+    //     }
+    // })
+
+    // updatepromises.then((res)=>{
+    //     console.log(res)
+    // }).catch((error)=>{
+    //     console.log(error)
+    // })
+
+    // db.collection('contact').updateMany({
+    //     name : 'Sidhu'
+    // },{
+    //     $set : {
+    //         name : 'Sudhanshu'
+    //     }
+    // }).then((res)=>{
+    //     console.log(res)
+    // }).catch((error)=>{
+    //     console.log(error)
+    // })
+
+    db.collection('contact').deleteMany({
+        name : 'Paresh'
+    }).then((res)=>{
+        console.log(res)
+    }).catch((error)=>{
+        console.log(error)
     })
 
 
-    // db.collection('contact')
 })
