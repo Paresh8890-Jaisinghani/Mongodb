@@ -51,7 +51,7 @@ const User = mongoose.model('User',{
 const nw = new User({
     name : 'Paresh',
     age : 21,
-    email : "oad"
+    email : "paresh@2.com"
 })
 
 nw.save().then(()=>{
